@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+<org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+<org.eventb.core.action name="'" org.eventb.core.assignment="WorkDirectory ≔ ∅" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="StageField ≔ ∅" org.eventb.core.label="act2"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="CommitRepo ≔ {snaps_to_snap(∅)}" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="file_to_state ≔ ∅" org.eventb.core.label="act4"/>
+<org.eventb.core.action name="," org.eventb.core.assignment="commitid_inc ≔ 1" org.eventb.core.label="act6"/>
+<org.eventb.core.action name="-" org.eventb.core.assignment="AllBranch ≔ {master}" org.eventb.core.label="act7"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="branch ≔ master" org.eventb.core.label="act5"/>
+<org.eventb.core.action name="." org.eventb.core.assignment="branch_to_pointer ≔ {master↦0}" org.eventb.core.label="act8"/>
+<org.eventb.core.action name="/" org.eventb.core.assignment="pointer_to_repo ≔ {0↦snaps_to_snap(∅)}" org.eventb.core.label="act9"/>
+</org.eventb.core.event>
+<org.eventb.core.seesContext name="(" org.eventb.core.target="c0"/>
+<org.eventb.core.variable name=")" org.eventb.core.comment="工作目录" org.eventb.core.identifier="WorkDirectory"/>
+<org.eventb.core.variable name="*" org.eventb.core.comment="暂存区" org.eventb.core.identifier="StageField"/>
+<org.eventb.core.variable name="+" org.eventb.core.comment="提交仓库" org.eventb.core.identifier="CommitRepo"/>
+<org.eventb.core.invariant name="," org.eventb.core.label="inv1" org.eventb.core.predicate="WorkDirectory ⊆ File"/>
+<org.eventb.core.invariant name="-" org.eventb.core.label="inv2" org.eventb.core.predicate="StageField ⊆ SnapShot"/>
+<org.eventb.core.invariant name="." org.eventb.core.label="inv3" org.eventb.core.predicate="CommitRepo ⊆ SnapShot"/>
+<org.eventb.core.variable name="/" org.eventb.core.comment="文件到文件状态的映射" org.eventb.core.identifier="file_to_state"/>
+<org.eventb.core.invariant name="0" org.eventb.core.label="inv4" org.eventb.core.predicate="file_to_state ∈ WorkDirectory → State"/>
+<org.eventb.core.event name="1" org.eventb.core.comment="向工作目录添加文件" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="create_file">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="f"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="f ∈ File ∖ WorkDirectory"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="WorkDirectory ≔ WorkDirectory ∪ {f}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="file_to_state ≔ file_to_state ∪ {f↦untracked}" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="2" org.eventb.core.comment="从工作目录删除文件(不受文件状态影响)" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="delete_file">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="f"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="f ∈ WorkDirectory"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="WorkDirectory ≔ WorkDirectory ∖ {f}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="file_to_state ≔ {f} ⩤ file_to_state" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="3" org.eventb.core.comment="从工作目录修改未跟踪的文件" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="modify_file_untracked">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="f_old"/>
+<org.eventb.core.parameter name="(" org.eventb.core.identifier="f_new"/>
+<org.eventb.core.guard name=")" org.eventb.core.label="grd1" org.eventb.core.predicate="f_old ∈ WorkDirectory"/>
+<org.eventb.core.guard name="." org.eventb.core.label="grd2" org.eventb.core.predicate="file_to_state(f_old) = untracked"/>
+<org.eventb.core.guard name="+" org.eventb.core.label="grd3" org.eventb.core.predicate="f_new ∈ File ∖ WorkDirectory"/>
+<org.eventb.core.action name="," org.eventb.core.assignment="WorkDirectory ≔ (WorkDirectory ∪ {f_new}) ∖ {f_old}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="-" org.eventb.core.assignment="file_to_state ≔ ({f_old} ⩤ file_to_state) ∪ {f_new↦untracked}" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="6" org.eventb.core.comment="从工作目录修改已跟踪的文件" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="modify_file_tracked">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="f_old"/>
+<org.eventb.core.parameter name="(" org.eventb.core.identifier="f_new"/>
+<org.eventb.core.guard name=")" org.eventb.core.label="grd1" org.eventb.core.predicate="f_old ∈ WorkDirectory"/>
+<org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="file_to_state(f_old) ≠ untracked"/>
+<org.eventb.core.guard name="+" org.eventb.core.label="grd3" org.eventb.core.predicate="f_new ∈ File ∖ WorkDirectory"/>
+<org.eventb.core.action name="," org.eventb.core.assignment="WorkDirectory ≔ (WorkDirectory ∪ {f_new}) ∖ {f_old}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="-" org.eventb.core.assignment="file_to_state ≔ ({f_old} ⩤ file_to_state) ∪ {f_new↦notstaged}" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="7" org.eventb.core.comment="add整个工作目录到暂存区" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="add_all">
+<org.eventb.core.action name="'" org.eventb.core.assignment="StageField ≔ file_to_snap[WorkDirectory]" org.eventb.core.label="act1"/>
+</org.eventb.core.event>
+<org.eventb.core.invariant name=":" org.eventb.core.label="inv6" org.eventb.core.predicate="commitid_inc ∈ ℕ"/>
+<org.eventb.core.variable name=";" org.eventb.core.comment="自增计数器，用于生成新的commitid" org.eventb.core.identifier="commitid_inc"/>
+<org.eventb.core.variable name="=" org.eventb.core.comment="所有可用分支" org.eventb.core.identifier="AllBranch"/>
+<org.eventb.core.invariant name="&gt;" org.eventb.core.label="inv7" org.eventb.core.predicate="AllBranch ⊆ Branches"/>
+<org.eventb.core.invariant name="9" org.eventb.core.label="inv5" org.eventb.core.predicate="branch ∈ AllBranch"/>
+<org.eventb.core.variable name="8" org.eventb.core.comment="当前分支" org.eventb.core.identifier="branch"/>
+<org.eventb.core.invariant name="?" org.eventb.core.label="inv8" org.eventb.core.predicate="branch_to_pointer ∈ AllBranch → 0‥commitid_inc−1"/>
+<org.eventb.core.variable name="@" org.eventb.core.comment="从分支到commitid指针的映射" org.eventb.core.identifier="branch_to_pointer"/>
+<org.eventb.core.variable name="A" org.eventb.core.comment="从提交id号到仓库中的提交快照的映射" org.eventb.core.identifier="pointer_to_repo"/>
+<org.eventb.core.invariant name="B" org.eventb.core.label="inv9" org.eventb.core.predicate="pointer_to_repo ∈ 0‥commitid_inc−1 → CommitRepo"/>
+<org.eventb.core.event name="C" org.eventb.core.comment="提交到仓库" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="commit">
+<org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="snaps_to_snap(StageField) ≠ pointer_to_repo(branch_to_pointer(branch))"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="CommitRepo ≔ CommitRepo ∪ {snaps_to_snap(StageField)}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="pointer_to_repo ≔ pointer_to_repo ∪ {commitid_inc↦snaps_to_snap(StageField)}" org.eventb.core.label="act2"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="commitid_inc ≔ commitid_inc + 1" org.eventb.core.label="act3"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="D" org.eventb.core.comment="创建新分支" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="create_branch">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="b"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="b ∈ Branches ∖ AllBranch"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="AllBranch ≔ AllBranch ∪ {b}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="branch_to_pointer ≔ branch_to_pointer ∪ {b↦branch_to_pointer(branch)}" org.eventb.core.label="act2"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="branch ≔ b" org.eventb.core.label="act3"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="E" org.eventb.core.comment="切换当前分支" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="switch_branch">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="b"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="b ∈ AllBranch ∖ {branch}"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="branch ≔ b" org.eventb.core.label="act1"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="F" org.eventb.core.comment="删除某一分支" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="delete_branch">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="b"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="b ∈ AllBranch ∖ {branch}"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="AllBranch ≔ AllBranch ∖ {b}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="branch_to_pointer ≔ {b} ⩤ branch_to_pointer" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+</org.eventb.core.machineFile>

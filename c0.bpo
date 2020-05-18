@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="11">
+<org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="11">
+<org.eventb.core.poIdentifier name="Branches" org.eventb.core.type="ℙ(Branches)"/>
+<org.eventb.core.poIdentifier name="File" org.eventb.core.type="ℙ(File)"/>
+<org.eventb.core.poIdentifier name="SnapShot" org.eventb.core.type="ℙ(SnapShot)"/>
+<org.eventb.core.poIdentifier name="State" org.eventb.core.type="ℙ(State)"/>
+<org.eventb.core.poIdentifier name="file_to_snap" org.eventb.core.type="ℙ(File×SnapShot)"/>
+<org.eventb.core.poIdentifier name="master" org.eventb.core.type="Branches"/>
+<org.eventb.core.poIdentifier name="notstaged" org.eventb.core.type="State"/>
+<org.eventb.core.poIdentifier name="snaps_to_snap" org.eventb.core.type="ℙ(ℙ(SnapShot)×SnapShot)"/>
+<org.eventb.core.poIdentifier name="staged" org.eventb.core.type="State"/>
+<org.eventb.core.poIdentifier name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/git2/c0.bpo|org.eventb.core.poFile#c0|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="11">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="file_to_snap∈File ⤖ SnapShot" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#1"/>
+<org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="snaps_to_snap∈ℙ(SnapShot) ⤖ SnapShot" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#2"/>
+<org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="untracked∈State" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#3"/>
+<org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="notstaged∈State" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#4"/>
+<org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="staged∈State" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#5"/>
+<org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="State={untracked,notstaged,staged}" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#6"/>
+<org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="untracked≠notstaged∧notstaged≠staged∧staged≠untracked" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#7"/>
+<org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="master∈Branches" org.eventb.core.source="/git2/c0.buc|org.eventb.core.contextFile#c0|org.eventb.core.axiom#8"/>
+</org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;org.animb.valuation.valBase" version="3">
+<org.eventb.core.carrierSet name="'" org.eventb.core.comment="磁盘文件全集(创建的未创建的都在里面)" org.eventb.core.identifier="File"/>
+<org.eventb.core.carrierSet name="(" org.eventb.core.comment="快照全集(创建的未创建的都在里面)" org.eventb.core.identifier="SnapShot"/>
+<org.eventb.core.carrierSet name=")" org.eventb.core.comment="状态全集(可理解为枚举)" org.eventb.core.identifier="State"/>
+<org.eventb.core.carrierSet name="*" org.eventb.core.comment="分支全集(创建的未创建的都在里面)" org.eventb.core.identifier="Branches"/>
+<org.eventb.core.constant name="+" org.eventb.core.comment="文件到快照的双射" org.eventb.core.identifier="file_to_snap"/>
+<org.eventb.core.constant name="," org.eventb.core.comment="快照集到快照的双射" org.eventb.core.identifier="snaps_to_snap"/>
+<org.eventb.core.constant name="-" org.eventb.core.comment="未跟踪" org.eventb.core.identifier="untracked"/>
+<org.eventb.core.constant name="." org.eventb.core.comment="跟踪了但未暂存" org.eventb.core.identifier="notstaged"/>
+<org.eventb.core.constant name="/" org.eventb.core.comment="已暂存" org.eventb.core.identifier="staged"/>
+<org.eventb.core.constant name="0" org.eventb.core.comment="master分支" org.eventb.core.identifier="master"/>
+<org.eventb.core.axiom name="1" org.eventb.core.label="axm1" org.eventb.core.predicate="file_to_snap ∈ File ⤖ SnapShot"/>
+<org.eventb.core.axiom name="2" org.eventb.core.label="axm2" org.eventb.core.predicate="snaps_to_snap ∈ ℙ(SnapShot) ⤖ SnapShot"/>
+<org.eventb.core.axiom name="3" org.eventb.core.label="axm3" org.eventb.core.predicate="untracked ∈ State"/>
+<org.eventb.core.axiom name="4" org.eventb.core.label="axm4" org.eventb.core.predicate="notstaged ∈ State"/>
+<org.eventb.core.axiom name="5" org.eventb.core.label="axm5" org.eventb.core.predicate="staged ∈ State"/>
+<org.eventb.core.axiom name="6" org.eventb.core.label="axm6" org.eventb.core.predicate="State = {untracked,notstaged,staged}"/>
+<org.eventb.core.axiom name="7" org.eventb.core.label="axm7" org.eventb.core.predicate="untracked ≠ notstaged ∧ notstaged ≠ staged ∧ staged ≠ untracked"/>
+<org.eventb.core.axiom name="8" org.eventb.core.label="axm8" org.eventb.core.predicate="master ∈ Branches"/>
+</org.eventb.core.contextFile>
