@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="61">
+<org.eventb.core.poFile org.eventb.core.poStamp="67">
 <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="34">
 <org.eventb.core.poIdentifier name="Branches" org.eventb.core.type="ℙ(Branches)"/>
 <org.eventb.core.poIdentifier name="File" org.eventb.core.type="ℙ(File)"/>
@@ -181,10 +181,19 @@
 <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="file_to_state(f_old)≠untracked" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#6|org.eventb.core.guard#*"/>
 <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="f_new∈File ∖ WorkDirectory" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#6|org.eventb.core.guard#+"/>
 </org.eventb.core.poPredicateSet>
-<org.eventb.core.poPredicateSet name="EVTIDENTbranch_to_pointex" org.eventb.core.parentSet="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="52">
+<org.eventb.core.poSequent name="add_all/inv4/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="67">
+<org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#EVTALLHYPbranch_to_pointex"/>
+<org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="{f⦂File,s⦂State·f∈WorkDirectory∧s=staged ∣ f ↦ s}∈WorkDirectory → State" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.invariant#0"/>
+<org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#7"/>
+<org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.invariant#0"/>
+<org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poSequent#add_all\/inv4\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+<org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD3"/>
+</org.eventb.core.poSequent>
+<org.eventb.core.poPredicateSet name="EVTIDENTbranch_to_pointex" org.eventb.core.parentSet="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="67">
+<org.eventb.core.poIdentifier name="file_to_state'" org.eventb.core.type="ℙ(File×State)"/>
 <org.eventb.core.poIdentifier name="StageField'" org.eventb.core.type="ℙ(SnapShot)"/>
 </org.eventb.core.poPredicateSet>
-<org.eventb.core.poPredicateSet name="EVTALLHYPbranch_to_pointex" org.eventb.core.parentSet="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#EVTIDENTbranch_to_pointex" org.eventb.core.poStamp="52"/>
+<org.eventb.core.poPredicateSet name="EVTALLHYPbranch_to_pointex" org.eventb.core.parentSet="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#EVTIDENTbranch_to_pointex" org.eventb.core.poStamp="67"/>
 <org.eventb.core.poSequent name="commit/grd1/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="59">
 <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/git2/m0.bpo|org.eventb.core.poFile#m0|org.eventb.core.poPredicateSet#EVTIDENTbranch_to_pointey"/>
 <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="StageField∈dom(snaps_to_snap)∧snaps_to_snap∈ℙ(SnapShot) ⇸ SnapShot∧branch∈dom(branch_to_pointer)∧branch_to_pointer∈Branches ⇸ ℤ∧branch_to_pointer(branch)∈dom(pointer_to_repo)∧pointer_to_repo∈ℤ ⇸ SnapShot" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#C|org.eventb.core.guard#'"/>

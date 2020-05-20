@@ -13,6 +13,7 @@
 <org.eventb.core.psStatus name="modify_file_untracked/inv4/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="52" org.eventb.core.psManual="false"/>
 <org.eventb.core.psStatus name="modify_file_tracked/grd2/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="52" org.eventb.core.psManual="false"/>
 <org.eventb.core.psStatus name="modify_file_tracked/inv4/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="52" org.eventb.core.psManual="false"/>
+<org.eventb.core.psStatus name="add_all/inv4/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="67" org.eventb.core.psManual="false"/>
 <org.eventb.core.psStatus name="commit/grd1/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="59" org.eventb.core.psManual="false"/>
 <org.eventb.core.psStatus name="commit/inv6/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="59" org.eventb.core.psManual="false"/>
 <org.eventb.core.psStatus name="commit/inv8/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="60" org.eventb.core.psManual="false"/>

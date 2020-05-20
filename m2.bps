@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.psFile>
+<org.eventb.core.psStatus name="INITIALISATION/inv1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="31" org.eventb.core.psManual="false"/>
+<org.eventb.core.psStatus name="create_file/grd2/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="31" org.eventb.core.psManual="false"/>
+<org.eventb.core.psStatus name="create_branch/inv1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="31" org.eventb.core.psManual="false"/>
+<org.eventb.core.psStatus name="create_branch/new_act/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="31" org.eventb.core.psManual="false"/>
+<org.eventb.core.psStatus name="delete_branch/inv1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="31" org.eventb.core.psManual="false"/>
+<org.eventb.core.psStatus name="extend_ignore/inv1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="48" org.eventb.core.psManual="false"/>
+<org.eventb.core.psStatus name="extend_ignore/act2/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="48" org.eventb.core.psManual="false"/>
+</org.eventb.core.psFile>

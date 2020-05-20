@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="47">
+<org.eventb.core.poFile org.eventb.core.poStamp="52">
 <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="0">
 <org.eventb.core.poIdentifier name="Branches" org.eventb.core.type="ℙ(Branches)"/>
 <org.eventb.core.poIdentifier name="File" org.eventb.core.type="ℙ(File)"/>
@@ -150,10 +150,11 @@
 <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="file_to_state(f_old)≠untracked" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#6|org.eventb.core.guard#*"/>
 <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="f_new∈File ∖ WorkDirectory" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#6|org.eventb.core.guard#+"/>
 </org.eventb.core.poPredicateSet>
-<org.eventb.core.poPredicateSet name="EVTIDENTbranch_to_pointex" org.eventb.core.parentSet="/git2/m1.bpo|org.eventb.core.poFile#m1|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="47">
+<org.eventb.core.poPredicateSet name="EVTIDENTbranch_to_pointex" org.eventb.core.parentSet="/git2/m1.bpo|org.eventb.core.poFile#m1|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="52">
+<org.eventb.core.poIdentifier name="file_to_state'" org.eventb.core.type="ℙ(File×State)"/>
 <org.eventb.core.poIdentifier name="StageField'" org.eventb.core.type="ℙ(SnapShot)"/>
 </org.eventb.core.poPredicateSet>
-<org.eventb.core.poPredicateSet name="EVTALLHYPbranch_to_pointex" org.eventb.core.parentSet="/git2/m1.bpo|org.eventb.core.poFile#m1|org.eventb.core.poPredicateSet#EVTIDENTbranch_to_pointex" org.eventb.core.poStamp="47"/>
+<org.eventb.core.poPredicateSet name="EVTALLHYPbranch_to_pointex" org.eventb.core.parentSet="/git2/m1.bpo|org.eventb.core.poFile#m1|org.eventb.core.poPredicateSet#EVTIDENTbranch_to_pointex" org.eventb.core.poStamp="52"/>
 <org.eventb.core.poSequent name="commit/modify_grd1/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="47">
 <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/git2/m1.bpo|org.eventb.core.poFile#m1|org.eventb.core.poPredicateSet#EVTIDENTbranch_to_pointey"/>
 <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="StageField∈dom(snaps_to_snap)∧snaps_to_snap∈ℙ(SnapShot) ⇸ SnapShot" org.eventb.core.source="/git2/m1.bum|org.eventb.core.machineFile#m1|org.eventb.core.event#H|org.eventb.core.guard#'"/>

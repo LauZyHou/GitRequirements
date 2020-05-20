@@ -82,6 +82,7 @@
 </org.eventb.core.scEvent>
 <org.eventb.core.scEvent name="branch_to_pointex" org.eventb.core.accurate="true" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="add_all" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#7">
 <org.eventb.core.scAction name="'" org.eventb.core.assignment="StageField ≔ file_to_snap[WorkDirectory]" org.eventb.core.label="act1" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#7|org.eventb.core.action#'"/>
+<org.eventb.core.scAction name="(" org.eventb.core.assignment="file_to_state ≔ {f⦂File,s⦂State·f∈WorkDirectory∧s=staged ∣ f ↦ s}" org.eventb.core.label="act2" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#7|org.eventb.core.action#("/>
 </org.eventb.core.scEvent>
 <org.eventb.core.scEvent name="branch_to_pointey" org.eventb.core.accurate="true" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="commit" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#C">
 <org.eventb.core.scGuard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="snaps_to_snap(StageField)≠pointer_to_repo(branch_to_pointer(branch))" org.eventb.core.source="/git2/m0.bum|org.eventb.core.machineFile#m0|org.eventb.core.event#C|org.eventb.core.guard#'" org.eventb.core.theorem="false"/>

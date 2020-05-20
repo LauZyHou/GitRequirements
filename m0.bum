@@ -52,6 +52,7 @@
 </org.eventb.core.event>
 <org.eventb.core.event name="7" org.eventb.core.comment="add整个工作目录到暂存区" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="add_all">
 <org.eventb.core.action name="'" org.eventb.core.assignment="StageField ≔ file_to_snap[WorkDirectory]" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="file_to_state ≔ {f↦s ∣ f∈WorkDirectory ∧ s=staged}" org.eventb.core.label="act2"/>
 </org.eventb.core.event>
 <org.eventb.core.invariant name=":" org.eventb.core.label="inv6" org.eventb.core.predicate="commitid_inc ∈ ℕ"/>
 <org.eventb.core.variable name=";" org.eventb.core.comment="自增计数器，用于生成新的commitid" org.eventb.core.identifier="commitid_inc"/>
@@ -64,7 +65,7 @@
 <org.eventb.core.variable name="A" org.eventb.core.comment="从提交id号到仓库中的提交快照的映射" org.eventb.core.identifier="pointer_to_repo"/>
 <org.eventb.core.invariant name="B" org.eventb.core.label="inv9" org.eventb.core.predicate="pointer_to_repo ∈ 0‥commitid_inc−1 → CommitRepo"/>
 <org.eventb.core.event name="C" org.eventb.core.comment="提交到仓库" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="commit">
-<org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="snaps_to_snap(StageField) ≠ pointer_to_repo(branch_to_pointer(branch))"/>
+<org.eventb.core.guard name="'" org.eventb.core.comment="暂存区干净" org.eventb.core.label="grd1" org.eventb.core.predicate="snaps_to_snap(StageField) ≠ pointer_to_repo(branch_to_pointer(branch))"/>
 <org.eventb.core.action name="(" org.eventb.core.assignment="CommitRepo ≔ CommitRepo ∪ {snaps_to_snap(StageField)}" org.eventb.core.label="act1"/>
 <org.eventb.core.action name="+" org.eventb.core.assignment="branch_to_pointer(branch) ≔ commitid_inc" org.eventb.core.label="act2"/>
 <org.eventb.core.action name=")" org.eventb.core.assignment="pointer_to_repo ≔ pointer_to_repo ∪ {commitid_inc↦snaps_to_snap(StageField)}" org.eventb.core.label="act3"/>

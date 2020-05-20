@@ -3942,4 +3942,73 @@
 <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.trueGoal"/>
 <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.genMPL3"/>
 </org.eventb.core.prProof>
+<org.eventb.core.prProof name="add_all/inv4/INV" org.eventb.core.confidence="1000" org.eventb.core.prFresh="" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1" org.eventb.core.prSets="File,State">
+<org.eventb.core.lang name="L"/>
+<org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
+<org.eventb.core.prAnte name="'">
+<org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p2" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p3,p4,p5"/>
+<org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="type rewrites" org.eventb.core.prHyps="">
+<org.eventb.core.prAnte name="'">
+<org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p6"/>
+<org.eventb.core.prHypAction name="HIDE1" org.eventb.core.prHyps="p7"/>
+<org.eventb.core.prHypAction name="HIDE2" org.eventb.core.prHyps="p8"/>
+<org.eventb.core.prHypAction name="HIDE3" org.eventb.core.prHyps="p9"/>
+<org.eventb.core.prHypAction name="HIDE4" org.eventb.core.prHyps="p10"/>
+<org.eventb.core.prHypAction name="HIDE5" org.eventb.core.prHyps="p11"/>
+<org.eventb.core.prHypAction name="HIDE6" org.eventb.core.prHyps="p12"/>
+<org.eventb.core.prHypAction name="HIDE7" org.eventb.core.prHyps="p13"/>
+<org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="PP" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1">
+<org.eventb.core.prString name=".arg" org.eventb.core.prSValue="R500"/>
+</org.eventb.core.prRule>
+</org.eventb.core.prAnte>
+</org.eventb.core.prRule>
+</org.eventb.core.prAnte>
+</org.eventb.core.prRule>
+<org.eventb.core.prIdent name="WorkDirectory" org.eventb.core.type="ℙ(File)"/>
+<org.eventb.core.prIdent name="file_to_state" org.eventb.core.type="ℙ(File×State)"/>
+<org.eventb.core.prIdent name="staged" org.eventb.core.type="State"/>
+<org.eventb.core.prPred name="p9" org.eventb.core.predicate="master∈Branches">
+<org.eventb.core.prIdent name="Branches" org.eventb.core.type="ℙ(Branches)"/>
+<org.eventb.core.prIdent name="master" org.eventb.core.type="Branches"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p7" org.eventb.core.predicate="notstaged∈State">
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p12" org.eventb.core.predicate="CommitRepo⊆SnapShot">
+<org.eventb.core.prIdent name="CommitRepo" org.eventb.core.type="ℙ(SnapShot)"/>
+<org.eventb.core.prIdent name="SnapShot" org.eventb.core.type="ℙ(SnapShot)"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p1" org.eventb.core.predicate="file_to_state∈WorkDirectory → State"/>
+<org.eventb.core.prPred name="p8" org.eventb.core.predicate="staged∈State"/>
+<org.eventb.core.prPred name="p5" org.eventb.core.predicate="¬staged=untracked">
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p6" org.eventb.core.predicate="untracked∈State">
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p13" org.eventb.core.predicate="AllBranch⊆Branches">
+<org.eventb.core.prIdent name="AllBranch" org.eventb.core.type="ℙ(Branches)"/>
+<org.eventb.core.prIdent name="Branches" org.eventb.core.type="ℙ(Branches)"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p4" org.eventb.core.predicate="¬notstaged=staged">
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p3" org.eventb.core.predicate="¬untracked=notstaged">
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p0" org.eventb.core.predicate="{f⦂File,s⦂State·f∈WorkDirectory∧s=staged ∣ f ↦ s}∈WorkDirectory → State"/>
+<org.eventb.core.prPred name="p2" org.eventb.core.predicate="untracked≠notstaged∧notstaged≠staged∧staged≠untracked">
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p11" org.eventb.core.predicate="StageField⊆SnapShot">
+<org.eventb.core.prIdent name="SnapShot" org.eventb.core.type="ℙ(SnapShot)"/>
+<org.eventb.core.prIdent name="StageField" org.eventb.core.type="ℙ(SnapShot)"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p10" org.eventb.core.predicate="WorkDirectory⊆File"/>
+<org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+<org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
+<org.eventb.core.prReas name="r2" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalPP:1"/>
+</org.eventb.core.prProof>
 </org.eventb.core.prFile>
