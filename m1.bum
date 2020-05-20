@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+<org.eventb.core.refinesMachine name="'" org.eventb.core.target="m0"/>
+<org.eventb.core.seesContext name="(" org.eventb.core.target="c0"/>
+<org.eventb.core.variable name=")" org.eventb.core.comment="工作目录" org.eventb.core.identifier="WorkDirectory"/>
+<org.eventb.core.variable name="*" org.eventb.core.comment="暂存区" org.eventb.core.identifier="StageField"/>
+<org.eventb.core.variable name="+" org.eventb.core.comment="提交仓库" org.eventb.core.identifier="CommitRepo"/>
+<org.eventb.core.variable name="/" org.eventb.core.comment="文件到文件状态的映射" org.eventb.core.identifier="file_to_state"/>
+<org.eventb.core.variable name=";" org.eventb.core.comment="自增计数器，用于生成新的commitid" org.eventb.core.identifier="commitid_inc"/>
+<org.eventb.core.variable name="=" org.eventb.core.comment="所有可用分支" org.eventb.core.identifier="AllBranch"/>
+<org.eventb.core.variable name="8" org.eventb.core.comment="当前分支" org.eventb.core.identifier="branch"/>
+<org.eventb.core.variable name="@" org.eventb.core.comment="从分支到commitid指针的映射" org.eventb.core.identifier="branch_to_pointer"/>
+<org.eventb.core.variable name="A" org.eventb.core.comment="从提交id号到仓库中的提交快照的映射" org.eventb.core.identifier="pointer_to_repo"/>
+<org.eventb.core.event name="B" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
+<org.eventb.core.action name="'" org.eventb.core.assignment="root_commit ≔ snaps_to_snap(∅)" org.eventb.core.label="act10"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="leaf_commits ≔ {snaps_to_snap(∅)}" org.eventb.core.comment="最初的叶子只有树根" org.eventb.core.label="act11"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="commit_to_parent ≔ ∅" org.eventb.core.comment="最开始只有父提交，没有指针关系" org.eventb.core.label="act12"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="C" org.eventb.core.comment="向工作目录添加文件" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="create_file">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="create_file"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="D" org.eventb.core.comment="从工作目录删除文件(不受文件状态影响)" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="delete_file">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="delete_file"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="E" org.eventb.core.comment="从工作目录修改未跟踪的文件" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="modify_file_untracked">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="modify_file_untracked"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="F" org.eventb.core.comment="从工作目录修改已跟踪的文件" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="modify_file_tracked">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="modify_file_tracked"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="G" org.eventb.core.comment="add整个工作目录到暂存区" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="add_all">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="add_all"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="H" org.eventb.core.comment="提交到仓库" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="commit">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="commit"/>
+<org.eventb.core.guard name="'" org.eventb.core.comment="加强卫式条件，为保证有穷深度树结构" org.eventb.core.label="modify_grd1" org.eventb.core.predicate="snaps_to_snap(StageField) ∉ CommitRepo"/>
+<org.eventb.core.action name="," org.eventb.core.assignment="leaf_commits ≔ (leaf_commits ∖ {pointer_to_repo(branch_to_pointer(branch))}) ∪ {snaps_to_snap(StageField)}" org.eventb.core.label="new_act1"/>
+<org.eventb.core.action name="-" org.eventb.core.assignment="commit_to_parent ≔ commit_to_parent ∪ {snaps_to_snap(StageField)↦pointer_to_repo(branch_to_pointer(branch))}" org.eventb.core.label="new_act2"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="CommitRepo ≔ CommitRepo ∪ {snaps_to_snap(StageField)}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="branch_to_pointer(branch) ≔ commitid_inc" org.eventb.core.label="act2"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="pointer_to_repo ≔ pointer_to_repo ∪ {commitid_inc↦snaps_to_snap(StageField)}" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="commitid_inc ≔ commitid_inc + 1" org.eventb.core.label="act4"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="I" org.eventb.core.comment="创建新分支" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="create_branch">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="create_branch"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="J" org.eventb.core.comment="切换当前分支" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="switch_branch">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="switch_branch"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="K" org.eventb.core.comment="删除某一分支" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="delete_branch">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="delete_branch"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="L" org.eventb.core.comment="移动head指针" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="move_head">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="move_head"/>
+</org.eventb.core.event>
+<org.eventb.core.invariant name="M" org.eventb.core.comment="树根永远是0号提交" org.eventb.core.label="inv1" org.eventb.core.predicate="root_commit ∈ CommitRepo ∧ root_commit = snaps_to_snap(∅)"/>
+<org.eventb.core.variable name="N" org.eventb.core.comment="提交树的树根" org.eventb.core.identifier="root_commit"/>
+<org.eventb.core.invariant name="O" org.eventb.core.comment="叶子是仓库里所有提交的子集" org.eventb.core.label="inv2" org.eventb.core.predicate="leaf_commits ⊆ CommitRepo "/>
+<org.eventb.core.variable name="P" org.eventb.core.comment="提交树的叶子" org.eventb.core.identifier="leaf_commits"/>
+<org.eventb.core.invariant name="Q" org.eventb.core.label="inv3" org.eventb.core.predicate="commit_to_parent ∈ CommitRepo ∖ {root_commit} ↠ CommitRepo ∖ leaf_commits"/>
+<org.eventb.core.variable name="R" org.eventb.core.comment="提交指针映射关系(从提交指向父提交)" org.eventb.core.identifier="commit_to_parent"/>
+<org.eventb.core.invariant name="S" org.eventb.core.comment="防止&quot;有穷深度树&quot;出现环" org.eventb.core.label="inv4" org.eventb.core.predicate="∀T·root_commit∈T ∧ commit_to_parent∼[T]⊆T ⇒ CommitRepo⊆T"/>
+</org.eventb.core.machineFile>

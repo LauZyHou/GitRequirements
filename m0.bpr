@@ -2757,7 +2757,7 @@
 <org.eventb.core.prHypAction name="HIDE5" org.eventb.core.prHyps="p26"/>
 <org.eventb.core.prHypAction name="HIDE6" org.eventb.core.prHyps="p27"/>
 <org.eventb.core.prHypAction name="HIDE7" org.eventb.core.prHyps="p28"/>
-<org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p15,p1,p9,p2,p6,p11,p3,p7,p12,p4,p13,p5,p14,p16,p17,p18,p19,p20">
+<org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p15,p1,p9,p2,p6,p11,p3,p7,p5,p12,p4,p13,p14,p16,p17,p18,p19,p20">
 <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
 </org.eventb.core.prRule>
 </org.eventb.core.prAnte>
@@ -2783,17 +2783,17 @@
 <org.eventb.core.prIdent name="master" org.eventb.core.type="Branches"/>
 </org.eventb.core.prPred>
 <org.eventb.core.prPred name="p1" org.eventb.core.predicate="snaps_to_snap∈ℙ(SnapShot) ⤖ SnapShot"/>
+<org.eventb.core.prPred name="p0" org.eventb.core.predicate="branch_to_pointer{branch ↦ commitid_inc}∈AllBranch → 0 ‥ commitid_inc+1 − 1"/>
 <org.eventb.core.prPred name="p27" org.eventb.core.predicate="CommitRepo⊆SnapShot"/>
 <org.eventb.core.prPred name="p3" org.eventb.core.predicate="branch_to_pointer∈AllBranch → 0 ‥ commitid_inc − 1"/>
 <org.eventb.core.prPred name="p19" org.eventb.core.predicate="¬staged=untracked"/>
 <org.eventb.core.prPred name="p21" org.eventb.core.predicate="untracked∈State"/>
 <org.eventb.core.prPred name="p28" org.eventb.core.predicate="AllBranch⊆Branches"/>
-<org.eventb.core.prPred name="p0" org.eventb.core.predicate="branch_to_pointer∈AllBranch → 0 ‥ commitid_inc+1 − 1"/>
 <org.eventb.core.prPred name="p8" org.eventb.core.predicate="snaps_to_snap(StageField)≠pointer_to_repo(branch_to_pointer(branch))"/>
 <org.eventb.core.prPred name="p10" org.eventb.core.predicate="untracked≠notstaged∧notstaged≠staged∧staged≠untracked"/>
 <org.eventb.core.prPred name="p11" org.eventb.core.predicate="branch∈AllBranch"/>
-<org.eventb.core.prPred name="p12" org.eventb.core.predicate="branch_to_pointer(branch)∈dom(pointer_to_repo)"/>
 <org.eventb.core.prPred name="p13" org.eventb.core.predicate="branch_to_pointer∈Branches ⇸ ℤ"/>
+<org.eventb.core.prPred name="p14" org.eventb.core.predicate="branch_to_pointer(branch)∈dom(pointer_to_repo)"/>
 <org.eventb.core.prPred name="p26" org.eventb.core.predicate="StageField⊆SnapShot"/>
 <org.eventb.core.prPred name="p15" org.eventb.core.predicate="file_to_snap∈File ⤖ SnapShot"/>
 <org.eventb.core.prPred name="p22" org.eventb.core.predicate="notstaged∈State"/>
@@ -2806,12 +2806,12 @@
 <org.eventb.core.prPred name="p17" org.eventb.core.predicate="¬untracked=notstaged"/>
 <org.eventb.core.prPred name="p7" org.eventb.core.predicate="pointer_to_repo∈0 ‥ commitid_inc − 1 → CommitRepo"/>
 <org.eventb.core.prPred name="p9" org.eventb.core.predicate="State={untracked,notstaged,staged}"/>
-<org.eventb.core.prPred name="p14" org.eventb.core.predicate="snaps_to_snap∈ℙ(SnapShot) ⇸ SnapShot"/>
+<org.eventb.core.prPred name="p12" org.eventb.core.predicate="snaps_to_snap∈ℙ(SnapShot) ⇸ SnapShot"/>
 <org.eventb.core.prPred name="p16" org.eventb.core.predicate="pointer_to_repo∈ℤ ⇸ SnapShot"/>
 <org.eventb.core.prPred name="p25" org.eventb.core.predicate="WorkDirectory⊆File"/>
-<org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
-<org.eventb.core.prReas name="r2" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
 <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+<org.eventb.core.prReas name="r2" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
+<org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
 </org.eventb.core.prProof>
 <org.eventb.core.prProof name="commit/inv9/INV" org.eventb.core.confidence="1000" org.eventb.core.prFresh="" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2,p3" org.eventb.core.prSets="Branches,SnapShot">
 <org.eventb.core.lang name="L"/>
@@ -3818,5 +3818,128 @@
 <org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
 <org.eventb.core.prReas name="r2" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
 <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+</org.eventb.core.prProof>
+<org.eventb.core.prProof name="move_head/inv8/INV" org.eventb.core.confidence="1000" org.eventb.core.prFresh="" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2,p3,p4,p5,p6,p7,p8,p9,p10" org.eventb.core.prSets="Branches,File,SnapShot,State">
+<org.eventb.core.lang name="L"/>
+<org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
+<org.eventb.core.prAnte name="'">
+<org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p8" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p11,p12,p13"/>
+<org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="type rewrites" org.eventb.core.prHyps="">
+<org.eventb.core.prAnte name="'">
+<org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p14"/>
+<org.eventb.core.prHypAction name="HIDE1" org.eventb.core.prHyps="p15"/>
+<org.eventb.core.prHypAction name="HIDE2" org.eventb.core.prHyps="p16"/>
+<org.eventb.core.prHypAction name="HIDE3" org.eventb.core.prHyps="p17"/>
+<org.eventb.core.prHypAction name="HIDE4" org.eventb.core.prHyps="p18"/>
+<org.eventb.core.prHypAction name="HIDE5" org.eventb.core.prHyps="p19"/>
+<org.eventb.core.prHypAction name="HIDE6" org.eventb.core.prHyps="p20"/>
+<org.eventb.core.prHypAction name="HIDE7" org.eventb.core.prHyps="p21"/>
+<org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p10,p3,p5,p6,p1,p9,p7,p4,p2,p11,p12,p13">
+<org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
+</org.eventb.core.prRule>
+</org.eventb.core.prAnte>
+</org.eventb.core.prRule>
+</org.eventb.core.prAnte>
+</org.eventb.core.prRule>
+<org.eventb.core.prIdent name="AllBranch" org.eventb.core.type="ℙ(Branches)"/>
+<org.eventb.core.prIdent name="CommitRepo" org.eventb.core.type="ℙ(SnapShot)"/>
+<org.eventb.core.prIdent name="WorkDirectory" org.eventb.core.type="ℙ(File)"/>
+<org.eventb.core.prIdent name="branch" org.eventb.core.type="Branches"/>
+<org.eventb.core.prIdent name="branch_to_pointer" org.eventb.core.type="ℙ(Branches×ℤ)"/>
+<org.eventb.core.prIdent name="cid" org.eventb.core.type="ℤ"/>
+<org.eventb.core.prIdent name="commitid_inc" org.eventb.core.type="ℤ"/>
+<org.eventb.core.prIdent name="file_to_snap" org.eventb.core.type="ℙ(File×SnapShot)"/>
+<org.eventb.core.prIdent name="file_to_state" org.eventb.core.type="ℙ(File×State)"/>
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="pointer_to_repo" org.eventb.core.type="ℙ(ℤ×SnapShot)"/>
+<org.eventb.core.prIdent name="snaps_to_snap" org.eventb.core.type="ℙ(ℙ(SnapShot)×SnapShot)"/>
+<org.eventb.core.prIdent name="staged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+<org.eventb.core.prPred name="p0" org.eventb.core.predicate="branch_to_pointer{branch ↦ cid}∈AllBranch → 0 ‥ commitid_inc − 1"/>
+<org.eventb.core.prPred name="p17" org.eventb.core.predicate="master∈Branches">
+<org.eventb.core.prIdent name="master" org.eventb.core.type="Branches"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p15" org.eventb.core.predicate="notstaged∈State"/>
+<org.eventb.core.prPred name="p3" org.eventb.core.predicate="snaps_to_snap∈ℙ(SnapShot) ⤖ SnapShot"/>
+<org.eventb.core.prPred name="p20" org.eventb.core.predicate="CommitRepo⊆SnapShot"/>
+<org.eventb.core.prPred name="p6" org.eventb.core.predicate="file_to_state∈WorkDirectory → State"/>
+<org.eventb.core.prPred name="p7" org.eventb.core.predicate="branch_to_pointer∈AllBranch → 0 ‥ commitid_inc − 1"/>
+<org.eventb.core.prPred name="p16" org.eventb.core.predicate="staged∈State"/>
+<org.eventb.core.prPred name="p13" org.eventb.core.predicate="¬staged=untracked"/>
+<org.eventb.core.prPred name="p14" org.eventb.core.predicate="untracked∈State"/>
+<org.eventb.core.prPred name="p21" org.eventb.core.predicate="AllBranch⊆Branches"/>
+<org.eventb.core.prPred name="p1" org.eventb.core.predicate="commitid_inc∈ℕ"/>
+<org.eventb.core.prPred name="p12" org.eventb.core.predicate="¬notstaged=staged"/>
+<org.eventb.core.prPred name="p2" org.eventb.core.predicate="cid∈0 ‥ commitid_inc − 1"/>
+<org.eventb.core.prPred name="p11" org.eventb.core.predicate="¬untracked=notstaged"/>
+<org.eventb.core.prPred name="p4" org.eventb.core.predicate="pointer_to_repo∈0 ‥ commitid_inc − 1 → CommitRepo"/>
+<org.eventb.core.prPred name="p5" org.eventb.core.predicate="State={untracked,notstaged,staged}"/>
+<org.eventb.core.prPred name="p8" org.eventb.core.predicate="untracked≠notstaged∧notstaged≠staged∧staged≠untracked"/>
+<org.eventb.core.prPred name="p9" org.eventb.core.predicate="branch∈AllBranch"/>
+<org.eventb.core.prPred name="p19" org.eventb.core.predicate="StageField⊆SnapShot">
+<org.eventb.core.prIdent name="StageField" org.eventb.core.type="ℙ(SnapShot)"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p10" org.eventb.core.predicate="file_to_snap∈File ⤖ SnapShot"/>
+<org.eventb.core.prPred name="p18" org.eventb.core.predicate="WorkDirectory⊆File"/>
+<org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
+<org.eventb.core.prReas name="r2" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
+<org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+</org.eventb.core.prProof>
+<org.eventb.core.prProof name="commit/act3/WD" org.eventb.core.confidence="1000" org.eventb.core.prFresh="" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2" org.eventb.core.prSets="SnapShot">
+<org.eventb.core.lang name="L"/>
+<org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="generalized MP" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2">
+<org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p3">
+<org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p3" org.eventb.core.prHyps="">
+<org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p10">
+<org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p4" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p5,p6,p7"/>
+<org.eventb.core.prHypAction name="REWRITE1" org.eventb.core.prHidden="p8" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p9"/>
+<org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⊤ goal" org.eventb.core.prGoal="p10" org.eventb.core.prHyps=""/>
+</org.eventb.core.prAnte>
+</org.eventb.core.prRule>
+</org.eventb.core.prAnte>
+</org.eventb.core.prRule>
+<org.eventb.core.prIdent name="StageField" org.eventb.core.type="ℙ(SnapShot)"/>
+<org.eventb.core.prIdent name="snaps_to_snap" org.eventb.core.type="ℙ(ℙ(SnapShot)×SnapShot)"/>
+<org.eventb.core.prPred name="p7" org.eventb.core.predicate="¬staged=untracked">
+<org.eventb.core.prIdent name="State" org.eventb.core.type="ℙ(State)"/>
+<org.eventb.core.prIdent name="staged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p3" org.eventb.core.predicate="⊤∧⊤"/>
+<org.eventb.core.prPred name="p9" org.eventb.core.predicate="¬snaps_to_snap(StageField)=pointer_to_repo(branch_to_pointer(branch))">
+<org.eventb.core.prIdent name="Branches" org.eventb.core.type="ℙ(Branches)"/>
+<org.eventb.core.prIdent name="branch" org.eventb.core.type="Branches"/>
+<org.eventb.core.prIdent name="branch_to_pointer" org.eventb.core.type="ℙ(Branches×ℤ)"/>
+<org.eventb.core.prIdent name="pointer_to_repo" org.eventb.core.type="ℙ(ℤ×SnapShot)"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p10" org.eventb.core.predicate="⊤"/>
+<org.eventb.core.prPred name="p6" org.eventb.core.predicate="¬notstaged=staged">
+<org.eventb.core.prIdent name="State" org.eventb.core.type="ℙ(State)"/>
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="staged" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p0" org.eventb.core.predicate="StageField∈dom(snaps_to_snap)∧snaps_to_snap∈ℙ(SnapShot) ⇸ SnapShot"/>
+<org.eventb.core.prPred name="p5" org.eventb.core.predicate="¬untracked=notstaged">
+<org.eventb.core.prIdent name="State" org.eventb.core.type="ℙ(State)"/>
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p8" org.eventb.core.predicate="snaps_to_snap(StageField)≠pointer_to_repo(branch_to_pointer(branch))">
+<org.eventb.core.prIdent name="Branches" org.eventb.core.type="ℙ(Branches)"/>
+<org.eventb.core.prIdent name="branch" org.eventb.core.type="Branches"/>
+<org.eventb.core.prIdent name="branch_to_pointer" org.eventb.core.type="ℙ(Branches×ℤ)"/>
+<org.eventb.core.prIdent name="pointer_to_repo" org.eventb.core.type="ℙ(ℤ×SnapShot)"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p4" org.eventb.core.predicate="untracked≠notstaged∧notstaged≠staged∧staged≠untracked">
+<org.eventb.core.prIdent name="State" org.eventb.core.type="ℙ(State)"/>
+<org.eventb.core.prIdent name="notstaged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="staged" org.eventb.core.type="State"/>
+<org.eventb.core.prIdent name="untracked" org.eventb.core.type="State"/>
+</org.eventb.core.prPred>
+<org.eventb.core.prPred name="p1" org.eventb.core.predicate="snaps_to_snap∈ℙ(SnapShot) ⇸ SnapShot"/>
+<org.eventb.core.prPred name="p2" org.eventb.core.predicate="StageField∈dom(snaps_to_snap)"/>
+<org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+<org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.trueGoal"/>
+<org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.genMPL3"/>
 </org.eventb.core.prProof>
 </org.eventb.core.prFile>

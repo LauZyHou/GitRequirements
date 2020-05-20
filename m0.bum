@@ -66,8 +66,9 @@
 <org.eventb.core.event name="C" org.eventb.core.comment="提交到仓库" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="commit">
 <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="snaps_to_snap(StageField) ≠ pointer_to_repo(branch_to_pointer(branch))"/>
 <org.eventb.core.action name="(" org.eventb.core.assignment="CommitRepo ≔ CommitRepo ∪ {snaps_to_snap(StageField)}" org.eventb.core.label="act1"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="pointer_to_repo ≔ pointer_to_repo ∪ {commitid_inc↦snaps_to_snap(StageField)}" org.eventb.core.label="act2"/>
-<org.eventb.core.action name="*" org.eventb.core.assignment="commitid_inc ≔ commitid_inc + 1" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="branch_to_pointer(branch) ≔ commitid_inc" org.eventb.core.label="act2"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="pointer_to_repo ≔ pointer_to_repo ∪ {commitid_inc↦snaps_to_snap(StageField)}" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="commitid_inc ≔ commitid_inc + 1" org.eventb.core.label="act4"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="D" org.eventb.core.comment="创建新分支" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="create_branch">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="b"/>
@@ -86,5 +87,10 @@
 <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="b ∈ AllBranch ∖ {branch}"/>
 <org.eventb.core.action name=")" org.eventb.core.assignment="AllBranch ≔ AllBranch ∖ {b}" org.eventb.core.label="act1"/>
 <org.eventb.core.action name="*" org.eventb.core.assignment="branch_to_pointer ≔ {b} ⩤ branch_to_pointer" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="G" org.eventb.core.comment="移动head指针" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="move_head">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="cid"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="cid ∈ 0‥commitid_inc−1"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="branch_to_pointer ≔ branch_to_pointer  {branch↦cid}" org.eventb.core.label="act1"/>
 </org.eventb.core.event>
 </org.eventb.core.machineFile>
